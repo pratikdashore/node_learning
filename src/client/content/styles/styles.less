@@ -1,0 +1,14 @@
+/* Mixin */
+.border-radius (@radius: 5px, @color: black, @width :5px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
+	border-style: solid;
+	border-color: @color;
+	border-width: @width;
+}
+
+/* Implementation */
+body {
+	.border-radius(20px, blue, 2px);
+} 
