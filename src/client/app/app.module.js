@@ -3,7 +3,7 @@
 
     angular
         .module('nodeLearning', [
-            'npmLearning.login',
+            'nodeLearning.login',
             'ui.bootstrap'
         ]);
 

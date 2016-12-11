@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('npmLearning.login', [
+        .module('nodeLearning.login', [
             'ui.router'
         ]);
 
