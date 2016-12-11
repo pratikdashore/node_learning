@@ -112,7 +112,7 @@ gulp.task('wiredep', function() {
     return gulp
         .src(config.index)
         .pipe(wiredep(options))
-        .pipe($p.inject(gulp.src(config.js)))
+        .pipe(inject(config.js, '', config.jsOrder))
         .pipe(gulp.dest(config.client));
 });
 
@@ -120,7 +120,7 @@ gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function() {
     log('Wire up the app css into html and call wiredep');
     return gulp
         .src(config.index)
-        .pipe($p.inject(gulp.src(config.css)))
+        .pipe(inject(config.css))
         .pipe(gulp.dest(config.client));
 });
 
@@ -292,4 +292,19 @@ function notify(options) {
     };
     _.assign(notifyOptions, options);
     notifier.notify(notifyOptions);
+}
+
+function inject(src, label, order) {
+    var options = { read: false };
+    if (label) {
+        options.name = 'inject:' + label;
+    }
+
+    return $p.inject(orderSrc(src, order));
+}
+
+function orderSrc(src, order) {
+    return gulp
+        .src(src)
+        .pipe($p.if(order, $p.order(order)));
 }
