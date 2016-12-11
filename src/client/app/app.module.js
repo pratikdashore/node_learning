@@ -2,6 +2,9 @@
     'use strict';
 
     angular
-        .module('nodeLearning', ['ui.router', 'ui.bootstrap']);
+        .module('nodeLearning', [
+            'npmLearning.login',
+            'ui.bootstrap'
+        ]);
 
 }());
