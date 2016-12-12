@@ -4,7 +4,7 @@
     angular
         .module('nodeLearning', [
             'nodeLearning.login',
-            'ui.bootstrap'
+            'nodeLearning.core'
         ]);
 
 }());
