@@ -1,6 +1,6 @@
 var args = require('minimist')(process.argv.slice(2));
 var http = require('http');
-var port = 8006;
+var port = 8007;
 var host = 'localhost';
 var path = require('path');
 var httpServer = http.createServer(handleHttpNew).listen(port, host);
