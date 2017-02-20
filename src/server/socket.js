@@ -59,4 +59,8 @@ function handleIo(socket) {
     socket.on('disconnect', function() {
         console.log('user disconnected');
     });
+
+    socket.on('clientMsg', function(msg) {
+        socket.broadcast.emit('serverMsg', msg);
+    });
 }

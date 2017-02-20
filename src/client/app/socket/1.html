@@ -10,7 +10,11 @@
 <body>
     <h1>1.html</h1>
     <label for="nowTime">Current Time</label> <span id="nowTime"></span>
-    <div></div>
+    <p id="msgs">
+
+    </p>
+    <div> <input id="msg" style="width: 30%" type="text" value="" placeholder="Enter text">
+        <button id="sendMe" style="width:10%" type="submit">Send</button> </div>
 </body>
 <script src="/socket.io/socket.io.js"></script>
 <script>
@@ -24,6 +28,21 @@
 
     socket.on('hello', function(data) {
         document.getElementById("nowTime").innerHTML = data;
+    });
+
+    function printMsg(msg) {
+        document.getElementById('msgs').innerHTML += (msg + '<br>');
+    }
+
+    document.getElementById('sendMe').addEventListener('click', function() {
+        var msg = document.getElementById('msg').value;
+        printMsg(msg);
+        socket.emit('clientMsg', msg);
+        document.getElementById('msg').value = '';
+    });
+
+    socket.on('serverMsg', function(msg) {
+        printMsg(msg);
     });
 </script>
 
