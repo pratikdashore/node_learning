@@ -48,6 +48,11 @@ module.exports = function() {
             clientApp + '**/*.js',
             '!' + clientApp + '**/*.test.js'
         ],
+        jsOrder: [
+            '**/app.module.js',
+            '**/*.module.js',
+            '**/*.js'
+        ],
         less: clientStyles + 'styles.less',
 
         /**
