@@ -1,37 +1,17 @@
-var args = require('minimist')(process.argv.slice(2));
 var http = require('http');
 var port = 8007;
 var host = 'localhost';
 var path = require('path');
-var httpServer = http.createServer(handleHttpNew).listen(port, host);
+var httpServer = http.createServer(handleHttp).listen(port, host);
 var clientDir = path.join(__dirname, '..', 'client', 'app', 'socket');
 var nodeStatic = require('node-static');
 var staticFiles = new nodeStatic.Server(clientDir);
 var io = require('socket.io').listen(httpServer);
 
-if (args.help || !args.name) {
-    help();
-    process.exit(1);
-}
 
-var name = process.argv[2];
-
-console.log('hello ' + args.name);
-
-function help() {
-    console.log('call me with --help');
-}
+console.log('node started');
 
 function handleHttp(req, res) {
-    setTimeout(function() {
-        var num = Math.random();
-        setTimeout(function() {
-            res.end('hello' + num);
-        }, 2000);
-    }, 1000);
-}
-
-function handleHttpNew(req, res) {
     if (req.method === 'GET') {
         try {
             req.addListener('end', function() {
