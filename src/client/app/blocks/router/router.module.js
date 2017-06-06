@@ -5,5 +5,4 @@
         .module('nodeLearning.router', [
 
         ]);
-    console.log('test3');
 }());
